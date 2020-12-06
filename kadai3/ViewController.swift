@@ -23,22 +23,16 @@ class ViewController: UIViewController {
         textField2.keyboardType = .numberPad
     }
     @IBAction func calculateActionButton(_ sender: Any) {
-        var number1 = Double(textField1.text!) ?? 0
-        var number2 = Double(textField2.text!) ?? 0
+        let number1 = Double(textField1.text!) ?? 0
+        let number2 = Double(textField2.text!) ?? 0
         
-        if switch1.isOn {
-            numberLabel1.text = String(number1)
-        } else {
-            number1 *= -1
-            numberLabel1.text = "\(number1)"
-        }
-        if switch2.isOn {
-            numberLabel2.text = String(number2)
-        } else {
-            number2 *= -1
-            numberLabel2.text = "\(number2)"
-        }
-        kekkaLabel.text = String(number1 + number2)
+        let signedNumber1 = number1 * (switch1.isOn ? 1 : -1)
+        let signedNumber2 = number2 * (switch2.isOn ? 1 : -1)
+        
+        numberLabel1.text = String(signedNumber1)
+        numberLabel2.text = String(signedNumber2)
+        
+        kekkaLabel.text = String(signedNumber1 + signedNumber2)
     }
 }
 
